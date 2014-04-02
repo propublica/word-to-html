@@ -44,14 +44,14 @@ class WordToMarkdown
   #
   # Returns the normalized html
   def normalize(html)
-    encoding = encoding(html)
-    html = html.force_encoding(encoding).encode("UTF-8", :invalid => :replace, :replace => "")
-    html = Premailer.new(html, :with_html_string => true, :input_encoding => "UTF-8").to_inline_css
     html.gsub! /\<\/?o:[^>]+>/, "" # Strip everything in the office namespace
     html.gsub! /\<\/?w:[^>]+>/, "" # Strip everything in the word namespace
     html.gsub! /\n|\r/," "         # Remove linebreaks
     html.gsub! /“|”/, '"'          # Straighten curly double quotes
     html.gsub! /‘|’/, "'"          # Straighten curly single quotes
+    encoding = encoding(html)
+    html = html.force_encoding(encoding).encode("UTF-8", :invalid => :replace, :replace => "")
+    html = Premailer.new(html, :with_html_string => true, :input_encoding => "UTF-8").to_inline_css
     html
   end
 
