@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'reverse_markdown'
 require 'descriptive_statistics'
 require 'premailer'
