@@ -80,6 +80,7 @@ class WordToMarkdown
     match = html.encode("UTF-8", :invalid => :replace, :replace => "").match(/charset=([^\"]+)/)
     if match
       match[1].sub("macintosh", "MacRoman")
+      "UTF-8" if match[1] =~ /unicode/
     else
       "UTF-8"
     end
