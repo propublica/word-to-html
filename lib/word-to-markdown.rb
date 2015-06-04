@@ -79,8 +79,9 @@ class WordToMarkdown
   def encoding(html)
     match = html.encode("UTF-8", :invalid => :replace, :replace => "").match(/charset=([^\"]+)/)
     if match
-      match[1].sub("macintosh", "MacRoman")
-      "UTF-8" if match[1] =~ /unicode/
+      m = match[1].sub("macintosh", "MacRoman")
+      m = "UTF-8" if match[1] =~ /unicode/
+      return m
     else
       "UTF-8"
     end
